@@ -10,13 +10,13 @@ const increment = () => {
 function decrement(){
   console.log('decrement');
   sessionStorage.setItem('AIRSLATE_tabsOpened', Number(sessionStorage.getItem('AIRSLATE_tabsOpened')) - 1);
-  window.removeEventListener('beforeunload', decrement);
+  window.removeEventListener('pagehide', decrement);
 }
 
 function App() {
   React.useEffect(() => {
     console.log('hello');
-    window.addEventListener('beforeunload', decrement);
+    window.addEventListener('pagehide', decrement);
     const tabsOpened = Number(sessionStorage.getItem('AIRSLATE_tabsOpened'));
     if (tabsOpened === 'NaN' || tabsOpened === null || tabsOpened === 'undefined' || tabsOpened < 0){
       sessionStorage.setItem('AIRSLATE_tabsOpened', 0);
